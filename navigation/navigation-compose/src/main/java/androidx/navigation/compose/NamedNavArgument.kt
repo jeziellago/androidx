@@ -24,10 +24,22 @@ import androidx.navigation.NavDestinationDsl
  * Construct a new [NavArgument]
  */
 @NavDestinationDsl
+@Deprecated(
+    "This function will be removed in the" +
+        " future for better attend the supported navigation argument" +
+        " types by compose and disallow to use complex objects.",
+    ReplaceWith("namedNavArg")
+)
 public fun navArgument(
     name: String,
     builder: NavArgumentBuilder.() -> Unit
 ): NamedNavArgument = NamedNavArgument(name, NavArgumentBuilder().apply(builder).build())
+
+@NavDestinationDsl
+public fun namedNavArg(
+    name: String,
+    builder: NamedNavArgumentBuilder.() -> Unit
+): NamedNavArgument = NamedNavArgument(name, NamedNavArgumentBuilder().apply(builder).build())
 
 /**
  * Construct a named [NavArgument] by using the [navArgument] method.
